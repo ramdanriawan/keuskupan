@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2017 at 04:49 AM
+-- Generation Time: Oct 30, 2017 at 08:59 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- PHP Version: 5.5.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -255,6 +255,63 @@ INSERT INTO `kode_bidang_studi` (`kode`, `bidang_studi`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kode_keuskupan`
+--
+
+CREATE TABLE `kode_keuskupan` (
+  `id` int(11) NOT NULL,
+  `kode` int(5) NOT NULL,
+  `nama_keuskupan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kode_keuskupan`
+--
+
+INSERT INTO `kode_keuskupan` (`id`, `kode`, `nama_keuskupan`) VALUES
+(1, 301, 'Agats-Asmats'),
+(2, 302, 'Ambon'),
+(3, 303, 'Atambus'),
+(4, 304, 'Bandung'),
+(5, 305, 'Banjarmasin'),
+(6, 306, 'Bogor'),
+(7, 307, 'Denpasar'),
+(8, 308, 'Ende'),
+(9, 309, 'Jakarta'),
+(10, 310, 'Jayapura'),
+(11, 311, 'Ketapang'),
+(12, 312, 'Kupang'),
+(13, 313, 'Larantuka'),
+(14, 314, 'Makasar'),
+(15, 315, 'Malang'),
+(16, 316, 'Manado'),
+(17, 317, 'Manukwari-Sorong'),
+(18, 318, 'Maumere'),
+(19, 319, 'Medan'),
+(20, 320, 'Merauke'),
+(21, 321, 'Padang'),
+(22, 322, 'Palangkaraya'),
+(23, 323, 'Palembang'),
+(24, 324, 'Pangkalpinang'),
+(25, 325, 'Pontianak'),
+(26, 326, 'Purwokerto'),
+(27, 327, 'Ruteng'),
+(28, 328, 'Samarinda'),
+(29, 329, 'Sanggau'),
+(30, 330, 'Semarang'),
+(31, 331, 'Sibolga'),
+(32, 332, 'Sintang'),
+(33, 333, 'Surabaya'),
+(34, 334, 'Tanjungkarang'),
+(35, 335, 'Tanjung Selor'),
+(36, 336, 'Timika'),
+(37, 337, 'Weetebuta'),
+(38, 338, 'TNI/POLRI'),
+(39, 339, 'Luar Negeri');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kode_pekerjaan`
 --
 
@@ -434,6 +491,14 @@ CREATE TABLE `list_anggota_keluarga` (
   `liber_baptizatorum` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `list_anggota_keluarga`
+--
+
+INSERT INTO `list_anggota_keluarga` (`id`, `id_anggota_keluarga`, `nama`, `agama`, `tempat_dan_tgl_lahir`, `jenis_kelamin`, `hub_dngn_kepala_rt`, `suku_bangsa`, `pendidikan`, `bidang_studi`, `pekerjaan`, `golongan_darah`, `status_kesehatan`, `waktu_baptis`, `tempat_dan_tgl_baptis`, `tempat_dan_tahun_penguatan`, `status_perkawinan`, `jabatan_sosial`, `tempat_tinggal`, `komuni_pertama`, `status_gerejawi`, `keterlibatan`, `liber_baptizatorum`) VALUES
+(369, 8107604, 'adsfasfa', 'Kristen', 'sdfsdf', 'Laki Laki', 'Pasangan', '', '', '', 'Buruh Pabrik', 'A', 'Normal', 'Dewasa dari budha', 'sdfsf', 'sdfsdf', 'Sah Katolik', 'Pengurus LSM', 'Kupang', 'Sudah', 'Misa di gereja setempat, aktif di lingkungan', 'Pengurus Lingkungan', '5454'),
+(370, 8107604, 'adsfasfa', 'Kristen', 'sdfsdf', 'Laki Laki', 'Pasangan', '', '', '', 'Buruh Pabrik', 'A', 'Normal', 'Dewasa dari budha', 'sdfsf', 'sdfsdf', 'Sah Katolik', 'Pengurus LSM', 'Kupang', 'Sudah', 'Misa di gereja setempat, aktif di lingkungan', 'Pengurus Lingkungan', '5454');
+
 -- --------------------------------------------------------
 
 --
@@ -563,6 +628,33 @@ INSERT INTO `status_perkawinan` (`id`, `status_perkawinan`) VALUES
 (12, 'Nikah Adat'),
 (13, 'Nikah Efek Sipil');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `waktu_baptis`
+--
+
+CREATE TABLE `waktu_baptis` (
+  `id` int(11) NOT NULL,
+  `waktu_baptis` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `waktu_baptis`
+--
+
+INSERT INTO `waktu_baptis` (`id`, `waktu_baptis`) VALUES
+(1, 'Saat usia 0-7th'),
+(2, 'Saat usia 9-18'),
+(3, 'Dewasa dari islam'),
+(4, 'Dewasa dari hindu'),
+(5, 'Dewasa dari budha'),
+(6, 'Dewasa dari khonghucu'),
+(7, 'Dewasa dari kristen'),
+(8, 'Dewasa dari lain-lain'),
+(9, 'Belum baptis'),
+(10, 'Katekumen (Bayi+Anak)');
+
 --
 -- Indexes for dumped tables
 --
@@ -608,6 +700,12 @@ ALTER TABLE `keterlibatan`
 --
 ALTER TABLE `kode_bidang_studi`
   ADD PRIMARY KEY (`kode`);
+
+--
+-- Indexes for table `kode_keuskupan`
+--
+ALTER TABLE `kode_keuskupan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kode_pekerjaan`
@@ -666,6 +764,12 @@ ALTER TABLE `status_perkawinan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `waktu_baptis`
+--
+ALTER TABLE `waktu_baptis`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -705,6 +809,11 @@ ALTER TABLE `keterlibatan`
 ALTER TABLE `kode_bidang_studi`
   MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
+-- AUTO_INCREMENT for table `kode_keuskupan`
+--
+ALTER TABLE `kode_keuskupan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+--
 -- AUTO_INCREMENT for table `kode_pekerjaan`
 --
 ALTER TABLE `kode_pekerjaan`
@@ -723,7 +832,7 @@ ALTER TABLE `komuni_pertama`
 -- AUTO_INCREMENT for table `list_anggota_keluarga`
 --
 ALTER TABLE `list_anggota_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 --
 -- AUTO_INCREMENT for table `list_kepala_keluarga`
 --
@@ -749,6 +858,11 @@ ALTER TABLE `status_kesehatan`
 --
 ALTER TABLE `status_perkawinan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `waktu_baptis`
+--
+ALTER TABLE `waktu_baptis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
