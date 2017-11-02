@@ -1,4 +1,4 @@
-<?php include 'header_user.php'; ?>
+<?php include 'header.php'; ?>
 
 <!-- Main content -->
 <div class="content-wrapper">
@@ -7,16 +7,14 @@
 	<div class="page-header page-header-default">
 		<div class="page-header-content">
 			<div class="page-title">
-				<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - User</h4>
+				<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - List Anggota Keluarga <?php echo $_GET["id_anggota_keluarga"]; ?></h4>
 			</div>
 		</div>
 	</div>
 
 	<div class="container">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="row">
-
+		<div class="row">
+		
 			<div class="col-md-6">
 				<button class="btn btn-small btn-primary" data-toggle="modal" data-target="#tambah_anggota_keluarga">
 					<span class="glyphicon glyphicon-plus"></span>
@@ -26,7 +24,6 @@
 			<div class="col-md-6">
 				<input id="filter_table" class="form-control" type="search" placeholder="filter table...">
 			</div>
-
 			<div class="col-md-12" style="margin: 10px;">
 				<div class="table-responsive">
 					<table id="data_anggota_keluarga" class="table table-hover table-bordered table-condensed">
@@ -58,6 +55,7 @@
 						</tr>
 
 						<?php 
+
 						$mulai = ($_GET["page"] * 20) - 20;
 
 						if(!$_GET["page"])
@@ -65,9 +63,7 @@
 							$mulai = 0;
 						}
 
-						$query = $this->db->query("select * from list_anggota_keluarga where id_anggota_keluarga=$_COOKIE[id_anggota_keluarga] limit $mulai,20");
-
-
+						$query = $this->db->query("select * from list_anggota_keluarga where id_anggota_keluarga=$_GET[id_anggota_keluarga] limit $mulai,20");
 
 						if($query->num_rows() < 1):
 							echo "<tr><td colspan=23 class=text-center><h3>Data Belum Ada</h3></td>";
@@ -79,7 +75,7 @@
 
 						foreach ($query->result() as $key => $value): ?>
 							<tr>
-								<td><?php echo $value->id++; ?></td>
+								<td><?php echo $value->id; ?></td>
 								<td><?php echo $value->nama; ?></td>
 								<td><?php echo $value->agama; ?></td>
 								<td><?php echo $value->tempat_dan_tgl_lahir; ?></td>
@@ -103,32 +99,34 @@
 								<td><?php echo $value->liber_baptizatorum; ?></td>
 								<td><?php echo $value->catatan; ?></td>
 								<td>
-									<button id="edit" class="btn btn-warning">
-										<span class="glyphicon glyphico-edit"></span> 
+									<a href="edit_anggota_keluarga?id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>&id=<?php echo $value->id; ?>" class="btn btn-warning">
+										<span class="glyphicon glyphicon-edit"></span> 
 										Edit
-									</button>
-									<button id="delete" class="btn btn-danger">
-										<span class="glyphicon glyphico-edit"></span> 
+									</a>
+									<a href="insert?table=list_anggota_keluarga&id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>&id=<?php echo "{$value->id}&media=delete"; ?>" class="btn btn-danger delete" onclick="return confirm('Yakin ingin menghapus data ini?')">
+										<span class="glyphicon glyphicon-trash"></span> 
 										Delete
-									</button>
+									</a>
 								</td>
 							</tr>
 						 <?php endforeach; endif;?>
 					</table>
-					<p>
+				</div>
 
-				<div class="col-md-12">
+			</div>
+
+			<div class="col-md-12">
 					<ul class="pagination pagination-sm">
 						<li ><a style="background: #333; color: white; font-weight: bolder; cursor: default;">Page::</a></li>
 
 						<?php 
-						$query_row = $this->db->query("select * from list_anggota_keluarga where id_anggota_keluarga=$_COOKIE[id_anggota_keluarga]");
+						$query_row = $this->db->query("select * from list_anggota_keluarga where id_anggota_keluarga=$_GET[id_anggota_keluarga]");
 
 						if($_GET["page"] > 1)
 						{
 							$prev = $_GET["page"] - 1;
 
-							echo "<li ><a href='user?page=$prev' style='background: #333; color: white; font-weight: bolder;'>&lArr;</a></li>";
+							echo "<li ><a href='list_anggota_keluarga_admin?id_anggota_keluarga=$_GET[id_anggota_keluarga]&page=$prev' style='background: #333; color: white; font-weight: bolder;'>&lArr;</a></li>";
 						}
 
 						 ?>
@@ -140,12 +138,12 @@
 							{
 								if($_GET["page"] == $i)
 								{
-									echo "<li   class='active'><a href='user?page=$i'>$i</a></li>";
+									echo "<li   class='active'><a href='list_anggota_keluarga_admin?id_anggota_keluarga=$_GET[id_anggota_keluarga]&page=$i'>$i</a></li>";
 									
 								}
 								else
 								{
-									echo "<li><a href='user?page=$i'>$i</a></li>";
+									echo "<li><a href='list_anggota_keluarga_admin?id_anggota_keluarga=$_GET[id_anggota_keluarga]&page=$i'>$i</a></li>";
 								}
 							}
 
@@ -157,20 +155,45 @@
 						if($_GET["page"] * 20 < $query_row->num_rows())
 						{
 							$next = $_GET["page"] + 1;
-							echo "<li ><a href='user?page=$next' style='background: #333; color: white; font-weight: bolder;'>&rArr;</a></li>";
+							echo "<li ><a href='list_anggota_keluarga_admin?id_anggota_keluarga=$_GET[id_anggota_keluarga]&page=$next' style='background: #333; color: white; font-weight: bolder;'>&rArr;</a></li>";
 						}
 
 						 ?>
 						<li ><a style="background: #333; color: white; font-weight: bolder; cursor: default;">Of: <?php echo ceil($query_row->num_rows() / 20) ?>, Total <?php echo $query_row->num_rows() ?> Data</a></li>
 					</ul>
 				</div>
-				</div>
-			</div>
-		</div>
-			</div>
 		</div>
 	</div>
 
+</div>
+
+<!-- modal edit -->
+
+<div class="modal fade" id="modal_edit">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="text-center text-semibold">Edit Data</h3>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="modal_delete">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="text-center text-semibold">Edit Data</h3>
+			</div>
+			<div class="modal-body">
+				
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- modal tambah anggota keluarga -->
@@ -448,6 +471,8 @@
 							</div>
 							
 							<input type="hidden" name="table" value="list_anggota_keluarga">
+							<input type="hidden" name="media" value="tambah_anggota_keluarga_admin">
+							<input type="hidden" name="id_anggota_keluarga" value="<?php echo $_GET["id_anggota_keluarga"] ?>">
 
 							<div class="form-group">
 								<div class="row">
@@ -472,6 +497,7 @@
 		</div>
 	</div>
 </div>
+
 
 <script>
   $(document).ready(function(){
@@ -498,13 +524,12 @@
   })
 </script>
 
-<?php include 'footer_user.php'; ?>
-
+<?php include 'footer'; ?>
 <?php 
-if($_COOKIE["pesan_insert"])
+if(isset($_COOKIE["pesan_insert"]))
 {
-	echo "<script>alert('$_COOKIE[pesan_insert]')</script>";
+	echo "<script>alert('$_COOKIE[pesan_insert]');</script>";
 	setcookie("pesan_insert", "", time() - 1, "/");
 }
 
- ?>
+?>

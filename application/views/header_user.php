@@ -7,6 +7,7 @@ if(!isset($_COOKIE["username"]))
 }
 
  ?>
+
 <?php error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,7 @@ if(!isset($_COOKIE["username"]))
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Admin</title>
+	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
 
 	<!-- style default -->
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -52,8 +53,7 @@ if(!isset($_COOKIE["username"]))
 	<script type="text/javascript" src="../assets/js/plugins/ui/moment/moment.min.js"></script>
 	<script type="text/javascript" src="../assets/js/plugins/pickers/daterangepicker.js"></script>
 
-		<script type="text/javascript" src="../assets/js/core/app.js"></script>
-
+	<script type="text/javascript" src="../assets/js/core/app.js"></script>
 	<!-- /theme JS files -->
 </head>
 
@@ -167,10 +167,6 @@ if(!isset($_COOKIE["username"]))
 							<ul class="navigation navigation-main navigation-accordion">
 
 								<!-- Main -->
-								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li><a href="./admin"><i class="glyphicon glyphicon-registration-mark"></i> <span>Registrasi Kepala Keluarga</span></a></li>
-								<li><a href="list_kepala_keluarga"><i class="glyphicon glyphicon-th-list"></i> <span>List Kepala Keluarga</span></a></li>
-								<li><a href="cari"><i class="glyphicon glyphicon-search"></i> <span>Cari Kepala Keluarga</span></a></li>
 								<li><a href="login"><i class="icon-switch2"></i> <span>Logout</span></a></li>
 								<!-- /main -->
 							</ul>

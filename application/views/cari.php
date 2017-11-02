@@ -1,29 +1,28 @@
 <?php include 'header.php'; ?>
 
-<div class="content-wrapper">
-
-	<!-- Page header -->
-	<div class="page-header page-header-default">
-		<div class="page-header-content">
-			<div class="page-title">
-				<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - List Kepala Keluarga</h4>
-			</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-4">
+			<form class="form-inline" style="margin: 20px;">
+				<input class="form-control" type="search" name="cari" placeholder="Cari berdasarkan nama..." required minlength="2" value="<?php echo $_GET["cari"] ?>">
+				<button class="btn btn-primary">
+					<span class="glyphicon glyphicon-search"></span> 
+					Cari
+				</button>
+			</form>
 		</div>
-	</div>
+		<div class="col-md-8 col-md-offset-4">
+			<form class="form-inline">
+				<input id="filter_table" class="form-control input-lg" type="search" placeholder="filter table..." style="margin: 20px;">
+			</form>
+		</div>
 
-	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">List Kepala Keluarga</h3> 
-				</div>
-				<div class="panel-body table-responsive">
-				<div class="col-md-6 col-md-offset-6">
-					<input id="filter_table" class="form-control" type="search" placeholder="filter table...">
-				</div>
-					<table id="data_anggota_keluarga" class="table table-striped table-hover table-responsive table-condensed">
-						<thead>
-							<tr>
+				<div class="panel-body">
+					 <div class="table-responsive">
+					 	<table id="data_anggota_keluarga" class="table table-responsive table-hover table-striped table-condensed">
+					 		<tr>
 								<th>#id_anggota_keluarga</th>
 								<th>Nama</th>
 								<th>Agama</th>
@@ -38,7 +37,8 @@
 								<th>Actions</th>
 							</tr>
 
-							<?php 
+							<tr>
+								<?php 
 
 								$mulai = ($_GET["page"] * 20) - 20;
 
@@ -47,7 +47,7 @@
 									$mulai = 0;
 								}
 
-								$query = $this->db->query("select * from list_kepala_keluarga limit $mulai,20");
+								$query = $this->db->query("select * from list_kepala_keluarga where nama like '%$_GET[cari]%' limit $mulai,20");
 								foreach ($query->result() as $key => $value): echo "<tr>";?>
 
 								<td><a href="./list_anggota_keluarga_admin?id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>"><?php echo $value->id_anggota_keluarga; ?></a></td>
@@ -73,60 +73,60 @@
 								</td>
 
 							<?php echo "</tr>"; endforeach; ?>
-						</thead>
-					</table>
-					<div class="col-md-12">
-					<ul class="pagination pagination-sm">
-						<li ><a style="background: #333; color: white; font-weight: bolder; cursor: default;">Page::</a></li>
+							</tr>
+					 	</table>
+					 		<div class="col-md-12">
+								<ul class="pagination pagination-sm">
+								<li ><a style="background: #333; color: white; font-weight: bolder; cursor: default;">Page::</a></li>
 
-						<?php 
-						$query_row = $this->db->query("select * from list_kepala_keluarga");
+								<?php 
+								$query_row = $this->db->query("select * from list_kepala_keluarga where nama like '%$_GET[cari]'");
 
-						if($_GET["page"] > 1)
-						{
-							$prev = $_GET["page"] - 1;
-
-							echo "<li ><a href='list_kepala_keluarga?page=$prev' style='background: #333; color: white; font-weight: bolder;'>&lArr;</a></li>";
-						}
-
-						 ?>
-
-						<?php 
-
-
-							for($i = 1; $i <= ceil($query_row->num_rows() / 20); $i++)
-							{
-								if($_GET["page"] == $i)
+								if($_GET["page"] > 1)
 								{
-									echo "<li   class='active'><a href='list_kepala_keluarga?page=$i'>$i</a></li>";
-									
+									$prev = $_GET["page"] - 1;
+
+									echo "<li ><a href='cari?cari=$_GET[cari]&page=$prev' style='background: #333; color: white; font-weight: bolder;'>&lArr;</a></li>";
 								}
-								else
+
+								 ?>
+
+								<?php 
+
+
+									for($i = 1; $i <= ceil($query_row->num_rows() / 20); $i++)
+									{
+										if($_GET["page"] == $i)
+										{
+											echo "<li   class='active'><a href='cari?cari=$_GET[cari]&page=$i'>$i</a></li>";
+											
+										}
+										else
+										{
+											echo "<li><a href='cari?cari=$_GET[cari]&page=$i'>$i</a></li>";
+										}
+									}
+
+								 ?>
+					
+								
+								<?php 
+
+								if($_GET["page"] * 20 < $query_row->num_rows())
 								{
-									echo "<li><a href='list_kepala_keluarga?page=$i'>$i</a></li>";
+									$next = $_GET["page"] + 1;
+									echo "<li ><a href='cari?cari=$_GET[cari]&page=$next' style='background: #333; color: white; font-weight: bolder;'>&rArr;</a></li>";
 								}
-							}
 
-						 ?>
-			
-						
-						<?php 
-
-						if($_GET["page"] * 20 < $query_row->num_rows())
-						{
-							$next = $_GET["page"] + 1;
-							echo "<li ><a href='list_kepala_keluarga?page=$next' style='background: #333; color: white; font-weight: bolder;'>&rArr;</a></li>";
-						}
-
-						 ?>
-						<li ><a style="background: #333; color: white; font-weight: bolder; cursor: default;">Of: <?php echo ceil($query_row->num_rows() / 20) ?>, Total <?php echo $query_row->num_rows() ?> Data</a></li>
-					</ul>
-				</div>
+								 ?>
+								<li ><a style="background: #333; color: white; font-weight: bolder; cursor: default;">Of: <?php echo ceil($query_row->num_rows() / 20) ?>, Total <?php echo $query_row->num_rows() ?> Data</a></li>
+							</ul>
+						</div>
+					 </div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </div>
 <script>
   $(document).ready(function(){
@@ -153,4 +153,4 @@
   })
 </script>
 
-<?php include "footer.php"; ?>
+<?php include 'footer.php'; ?>

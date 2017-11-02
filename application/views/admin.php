@@ -17,12 +17,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-heading">
+				<h2 class="text-center">Registrasi Kepala Keluarga</h2>
+			</div>
+			<div class="panel-body">
 			<form id="registrasi_kepala_keluarga" class="" action="" method="post">
 
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-12">
-							<h2 class="text-center">Registrasi Kepala Keluarga</h2>
 						</div>
 					</div>
 				</div>
@@ -48,7 +51,7 @@
 					</div>
 					<div class="form-group">
 						<select class="form-control" required name="agama">
-							<option>--Agama--</option>
+							<option value="">--Agama--</option>
 							<option value="islam" <?php if($_POST["agama"] == "islam"){echo "selected";} ?>>islam</option>
 							<option value="kristen" <?php if($_POST["agama"] == "kristen"){echo "selected";} ?>>kristen</option>
 							<option value="katolik" <?php if($_POST["agama"] == "katolik"){echo "selected";} ?>>katolik</option>
@@ -65,13 +68,23 @@
 						<input class="form-control" type="" name="alamat" placeholder="Alamat" required maxlength="200" value="<?php echo $_POST["alamat"];?>">
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="number" name="telp" max="999999999999999" min="11111111111111" placeholder="Telp (max: 15)" required value="<?php echo $_POST["telp"];?>">
+						<input class="form-control" type="number" name="telp" placeholder="Telp (max: 15)" required value="<?php echo $_POST["telp"];?>">
 					</div>
 					<div class="form-group">
 						<input class="form-control" type="" name="wilayah_atau_lingkungan" placeholder="Wilayah atau Lingkungan" required value="<?php echo $_POST["wilayah_atau_lingkungan"];?>">
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="" name="status_nikah" placeholder="Status Nikah" required maxlength="10" value="<?php echo $_POST["status_nikah"];?>">
+						<select class="form-control" name="status_nikah" required>
+							<option value="">--Status Nikah--</option>
+							<?php 
+								$query = $this->db->query("select * from status_perkawinan");
+
+								foreach ($query->result() as $key => $value) {
+									echo "<option value='$value->status_perkawinan'>$value->status_perkawinan</option>";
+								}
+
+							 ?>
+						</select>
 					</div>
 					<div class="form-group">
 						<input class="form-control" type="" name="tempat_atau_tgl_nikah" placeholder="Tempat/tgl Nikah" required maxlength="50" value="<?php echo $_POST["tempat_atau_tgl_nikah"];?>">
@@ -81,7 +94,7 @@
 					</div>
 					<div class="form-group">
 						<select class="form-control" required name="kondisi_ekonomi">
-							<option>--Kondisi Ekonomi--</option>
+							<option value="">--Kondisi Ekonomi--</option>
 							<option value="bisa_membantu" <?php if($_POST["kondisi_ekonomi"] == "bisa_membantu"){echo "selected";} ?>>Bisa Membantu</option>
 							<option value="biasa" <?php if($_POST["kondisi_ekonomi"] == "biasa"){echo "selected";} ?>>Biasa</option>
 							<option value="perlu_dibantu" <?php if($_POST["kondisi_ekonomi"] == "perlu_dibantu"){echo "selected";} ?>>Perlu dibantu</option>
@@ -109,6 +122,7 @@
 					</div>
 				</fieldset>
 			</form>
+		</div>
 		</div>
 
 	</div>
