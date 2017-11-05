@@ -101,7 +101,20 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="" name="jenis_rumah_tangga" placeholder="Jenis Rumah Tangga" required value="<?php echo $_POST["jenis_rumah_tangga"];?>">
+						<select class="form-control" name="jenis_rumah_tangga" required>
+							<option value="">--Jenis Rumah Tangga--</option>
+							<?php 
+							$query = $this->db->query("select * from jenis_rumah_tangga");
+							
+							$no = 0;
+							foreach ($query->result() as $key => $value) {
+								$no++;
+								echo "<option value='$value->jenis_rumah_tangga'>{$no}. $value->jenis_rumah_tangga</option>";
+							}
+							
+							
+							 ?>
+						</select>
 					</div>
 
 					<div class="form-group">

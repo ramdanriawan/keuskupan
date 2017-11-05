@@ -39,7 +39,7 @@
 				<fieldset>
 					<legend>Data Login</legend>
 					<div class="form-group">
-						<input id="username" class="form-control" type="" name="username" placeholder="Username" maxlength="30" required value="<?php echo $data2->username ?>" disabled>
+						<input id="username" class="form-control" type="" name="username" placeholder="Username" maxlength="30" required value="<?php echo $data2->username ?>" disabled readonly>
 					</div>
 					<div class="form-group">
 						<input id="password1" class="form-control" type="password" name="password1" placeholder="Password" maxlength="30" required value="<?php echo $data2->password ?>">

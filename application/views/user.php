@@ -380,9 +380,9 @@
 							<div class="form-group">
 								<select class="form-control" name="tempat_tinggal" required>
 									<option value="">--Tempat Tinggal--</option>
-									<optgroup label="Di Luar Paroki di Dalam Keuskupan Setempat">
+									<!-- <optgroup label="Di Luar Paroki di Dalam Keuskupan Setempat">
 										<option value="">gk tau yg mana tabel yg di maksud</option>
-									</optgroup>
+									</optgroup> -->
 									<optgroup label="Di Luar Keuskupan Setempat">
 									<?php 
 

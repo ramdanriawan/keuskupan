@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2017 at 08:59 AM
+-- Generation Time: Nov 05, 2017 at 05:00 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.37
 
@@ -135,6 +135,25 @@ CREATE TABLE `jenis_kelamin` (
 INSERT INTO `jenis_kelamin` (`id`, `jenis_kelamin`) VALUES
 (1, 'Laki Laki'),
 (2, 'perempuan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_rumah_tangga`
+--
+
+CREATE TABLE `jenis_rumah_tangga` (
+  `id` int(11) NOT NULL,
+  `jenis_rumah_tangga` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenis_rumah_tangga`
+--
+
+INSERT INTO `jenis_rumah_tangga` (`id`, `jenis_rumah_tangga`) VALUES
+(1, 'RT Biasa'),
+(2, 'RT Khusus');
 
 -- --------------------------------------------------------
 
@@ -462,42 +481,65 @@ INSERT INTO `komuni_pertama` (`id`, `komuni_pertama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kondisi_ekonomi`
+--
+
+CREATE TABLE `kondisi_ekonomi` (
+  `id` int(11) NOT NULL,
+  `kondisi_ekonomi` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kondisi_ekonomi`
+--
+
+INSERT INTO `kondisi_ekonomi` (`id`, `kondisi_ekonomi`) VALUES
+(1, 'Bisa Membantu'),
+(2, 'Biasa'),
+(3, 'Perlu dibantu');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `list_anggota_keluarga`
 --
 
 CREATE TABLE `list_anggota_keluarga` (
   `id` int(11) NOT NULL,
   `id_anggota_keluarga` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `agama` varchar(50) NOT NULL,
-  `tempat_dan_tgl_lahir` varchar(50) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `agama` varchar(200) NOT NULL,
+  `tempat_dan_tgl_lahir` varchar(200) NOT NULL,
   `jenis_kelamin` varchar(10) NOT NULL,
-  `hub_dngn_kepala_rt` varchar(50) NOT NULL,
-  `suku_bangsa` varchar(50) NOT NULL,
-  `pendidikan` varchar(50) NOT NULL,
-  `bidang_studi` varchar(50) NOT NULL,
-  `pekerjaan` varchar(50) NOT NULL,
-  `golongan_darah` varchar(5) NOT NULL,
-  `status_kesehatan` varchar(50) NOT NULL,
-  `waktu_baptis` varchar(50) NOT NULL,
-  `tempat_dan_tgl_baptis` varchar(50) NOT NULL,
-  `tempat_dan_tahun_penguatan` varchar(50) NOT NULL,
-  `status_perkawinan` varchar(50) NOT NULL,
-  `jabatan_sosial` varchar(50) NOT NULL,
-  `tempat_tinggal` varchar(50) NOT NULL,
-  `komuni_pertama` varchar(50) NOT NULL,
-  `status_gerejawi` varchar(50) NOT NULL,
-  `keterlibatan` varchar(50) NOT NULL,
-  `liber_baptizatorum` varchar(50) NOT NULL
+  `hub_dngn_kepala_rt` varchar(200) NOT NULL,
+  `suku_bangsa` varchar(200) NOT NULL,
+  `pendidikan` varchar(200) NOT NULL,
+  `bidang_studi` varchar(200) NOT NULL,
+  `pekerjaan` varchar(200) NOT NULL,
+  `golongan_darah` varchar(200) NOT NULL,
+  `status_kesehatan` varchar(200) NOT NULL,
+  `waktu_baptis` varchar(200) NOT NULL,
+  `tempat_dan_tgl_baptis` varchar(200) NOT NULL,
+  `tempat_dan_tahun_penguatan` varchar(200) NOT NULL,
+  `status_perkawinan` varchar(200) NOT NULL,
+  `jabatan_sosial` varchar(200) NOT NULL,
+  `tempat_tinggal` varchar(200) NOT NULL,
+  `komuni_pertama` varchar(200) NOT NULL,
+  `status_gerejawi` varchar(200) NOT NULL,
+  `keterlibatan` varchar(200) NOT NULL,
+  `liber_baptizatorum` varchar(200) NOT NULL,
+  `catatan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `list_anggota_keluarga`
 --
 
-INSERT INTO `list_anggota_keluarga` (`id`, `id_anggota_keluarga`, `nama`, `agama`, `tempat_dan_tgl_lahir`, `jenis_kelamin`, `hub_dngn_kepala_rt`, `suku_bangsa`, `pendidikan`, `bidang_studi`, `pekerjaan`, `golongan_darah`, `status_kesehatan`, `waktu_baptis`, `tempat_dan_tgl_baptis`, `tempat_dan_tahun_penguatan`, `status_perkawinan`, `jabatan_sosial`, `tempat_tinggal`, `komuni_pertama`, `status_gerejawi`, `keterlibatan`, `liber_baptizatorum`) VALUES
-(369, 8107604, 'adsfasfa', 'Kristen', 'sdfsdf', 'Laki Laki', 'Pasangan', '', '', '', 'Buruh Pabrik', 'A', 'Normal', 'Dewasa dari budha', 'sdfsf', 'sdfsdf', 'Sah Katolik', 'Pengurus LSM', 'Kupang', 'Sudah', 'Misa di gereja setempat, aktif di lingkungan', 'Pengurus Lingkungan', '5454'),
-(370, 8107604, 'adsfasfa', 'Kristen', 'sdfsdf', 'Laki Laki', 'Pasangan', '', '', '', 'Buruh Pabrik', 'A', 'Normal', 'Dewasa dari budha', 'sdfsf', 'sdfsdf', 'Sah Katolik', 'Pengurus LSM', 'Kupang', 'Sudah', 'Misa di gereja setempat, aktif di lingkungan', 'Pengurus Lingkungan', '5454');
+INSERT INTO `list_anggota_keluarga` (`id`, `id_anggota_keluarga`, `nama`, `agama`, `tempat_dan_tgl_lahir`, `jenis_kelamin`, `hub_dngn_kepala_rt`, `suku_bangsa`, `pendidikan`, `bidang_studi`, `pekerjaan`, `golongan_darah`, `status_kesehatan`, `waktu_baptis`, `tempat_dan_tgl_baptis`, `tempat_dan_tahun_penguatan`, `status_perkawinan`, `jabatan_sosial`, `tempat_tinggal`, `komuni_pertama`, `status_gerejawi`, `keterlibatan`, `liber_baptizatorum`, `catatan`) VALUES
+(421, 8107604, 'nganu2', 'Katolik', 'sdfsfs', 'Laki Laki', 'Pasangan', 'Sumbawa', '2. ', 'Fisika', 'Guide Turis', 'A', 'Kesulitan Mengingat', 'Dewasa dari hindu', 'sfsdf', 'sdfsf', 'Sah Katolik', 'Warga Biasa', 'Larantuka', 'Belim', 'Misa di gereja setempat, aktif di paroki lain', 'Pengurus Lingkungan', '32424', 'sdfsf'),
+(422, 8107604, 'nganu3', 'Hindu', 'sfsd', 'perempuan', 'Kepala Rumah Tangga', 'Betawi', 'D1/D2/D3 (Jika Masih Belajar di Sekolah/Perguruan ', 'Film, Televisi, Radio', 'Guru Agama di Sekolah', 'B', 'Bisu / Tuli', 'Dewasa dari hindu', 'sfsdf', 'sdfsdf', 'Sah Beda Gereja', 'Pengurus Ormas/Partai/Politik', 'Makasar', 'Belim', 'Misa di gereja setempat, aktif di paroki lain', 'Pengurus Lingkungan', '42342', 'sdfsf'),
+(423, 8107604, 'nganu4', 'Kristen', 'sfs', 'perempuan', 'Pasangan', 'Timor', 'D1/D2/D3 (Jika Masih Belajar di Sekolah/Perguruan ', 'Fotografi/Grafika/Seni', 'Ibu Rumah Tangga', 'B', 'Bisu / Tuli', 'Dewasa dari islam', 'sfsfd', 'sdfsfs', 'Sah Katolik', 'RT/RW/Kelurahan', 'Kupang', 'Sudah', 'Misa di gereja setempat, aktif di lingkungan', 'Pengurus Ormas Kablik', '23424', 'sdfsfs'),
+(424, 8107604, 'nganu7', 'Kristen', 'sfsdfs', 'perempuan', 'Anak', 'Tionghoa', 'SLTA (Jika Tamat)', 'Fisika', 'Ibu Rumah Tangga', 'AB', 'Bisu / Tuli', 'Dewasa dari hindu', 'sdfsd', 'sdfsfs', 'Sah Katolik', 'RT/RW/Kelurahan', 'Larantuka', 'Belim', 'Misa di gereja setempat, aktif di paroki lain', 'Pengurus Kelompok Kategorial', '42342', 'sfsdf');
 
 -- --------------------------------------------------------
 
@@ -525,7 +567,18 @@ CREATE TABLE `list_kepala_keluarga` (
 --
 
 INSERT INTO `list_kepala_keluarga` (`id`, `id_anggota_keluarga`, `nama`, `agama`, `alamat`, `telp`, `wilayah_atau_lingkungan`, `status_nikah`, `tempat_atau_tgl_nikah`, `liber_matrimonium`, `kondisi_ekonomi`, `jenis_rumah_tangga`) VALUES
-(4, 8107604, 'fsdfsd', 'budha', 'sdfsfdsf', 2147483647, 'sfsdfdssdfs', 'dfsfssdfs', 'fsdfsd', 'fsdfsdfsdfs', 'bisa_membantu', 'dfsfssdfsf');
+(14, 5823272, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(15, 1236755, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(16, 5728240, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(17, 2218658, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(18, 9396301, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(19, 6931243, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(20, 6974365, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(21, 8721466, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(22, 3264831, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(24, 6107543, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf'),
+(25, 2550445, 'yes3', 'Hindu', 'yes', 423, '34e324', 'Sah Beda Gereja', 'sdfsf', 'sdfsdf', 'Biasa', 'sdfsdf'),
+(26, 1686096, 'yes', 'budha', 'yes', 423, '34e324', 'dsfsd', 'sdfsf', 'sdfsdf', 'biasa', 'sdfsdf');
 
 -- --------------------------------------------------------
 
@@ -547,7 +600,81 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id`, `username`, `password`, `session`, `id_anggota_keluarga`) VALUES
 (3, 'user1', 'user1', 'list_kepala_keluarga', 8107604),
-(4, 'admin', 'admin', 'admin', NULL);
+(4, 'admin', 'admin', 'admin', NULL),
+(5, 'ngawur', 'ngawur', 'list_kepala_keluarga', 4647186),
+(6, 'yes', 'yes', 'list_kepala_keluarga', 6169616),
+(7, 'yes2', 'yes', 'list_kepala_keluarga', 7359985),
+(8, 'yes3', 'yes', 'list_kepala_keluarga', 1816558),
+(9, 'yes4', 'yes', 'list_kepala_keluarga', 9442443),
+(10, 'yes5', 'yes', 'list_kepala_keluarga', 6335784),
+(11, 'yes6', 'yes', 'list_kepala_keluarga', 3944335),
+(12, 'yes7', 'yes', 'list_kepala_keluarga', 5823272),
+(13, 'yes8', 'yes', 'list_kepala_keluarga', 1236755),
+(14, 'yes9', 'yes', 'list_kepala_keluarga', 5728240),
+(15, 'yes10', 'yes', 'list_kepala_keluarga', 2218658),
+(16, 'yes11', 'yes', 'list_kepala_keluarga', 9396301),
+(17, 'yes12', 'yes', 'list_kepala_keluarga', 6931243),
+(18, 'yes13', 'yes', 'list_kepala_keluarga', 6974365),
+(19, 'yes14', 'yes', 'list_kepala_keluarga', 8721466),
+(20, 'yes15', 'yes', 'list_kepala_keluarga', 3264831),
+(21, 'yes16', 'yes', 'list_kepala_keluarga', 7413543),
+(22, 'yes17', 'yes', 'list_kepala_keluarga', 6107543),
+(23, 'yes18', 'yes', 'list_kepala_keluarga', 2550445),
+(24, 'yes19', 'yes', 'list_kepala_keluarga', 1686096),
+(25, 'yes20', 'yes', 'list_kepala_keluarga', 9143890),
+(26, 's', 's', 'list_kepala_keluarga', 2605102),
+(27, 'nganu', 'nganu', 'list_kepala_keluarga', 1391113),
+(28, 'user3', 'user2', 'list_kepala_keluarga', 9241394);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pendidikan`
+--
+
+CREATE TABLE `pendidikan` (
+  `id` int(11) NOT NULL,
+  `pendidikan` varchar(100) NOT NULL,
+  `kategory` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pendidikan`
+--
+
+INSERT INTO `pendidikan` (`id`, `pendidikan`, `kategory`) VALUES
+(1, 'Belum Sekolah (Jika Tamat)', 'tamat'),
+(2, 'SD (Jika Tamat)', 'tamat'),
+(3, 'SLTP (Jika Tamat)', 'tamat'),
+(4, 'SLTA (Jika Tamat)', 'tamat'),
+(5, 'Diploma (D1/D2/D3) (Jika Tamat)', 'tamat'),
+(6, 'Sarjana (Jika Tamat)', 'tamat'),
+(7, 'S2/Akta 5 (Jika Tamat)', 'tamat'),
+(8, 'S3 (Jika Tamat)', 'tamat'),
+(9, 'Usia 7-12 tdk Skl (Jika Tamat)', 'tamat'),
+(10, 'Usia 13-15 tdk Skl (Jika Tamat)', 'tamat'),
+(11, 'Buta Aksara (Jika Tamat)', 'tamat'),
+(12, 'SD (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(13, 'SLTP (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(14, 'SLTA/SMA (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(15, 'D1/D2/D3 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(16, 'S1 / D4 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(17, 'S2/Akta 5 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(18, 'S3 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(19, 'SD (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(20, 'SLTP (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(21, 'SLTA (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(22, 'S1/D2/D3 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(23, 'S1/D4 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(24, 'S2/Akta 5', 'masih_belajar'),
+(25, 'S3 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Katolik)', 'masih_belajar'),
+(26, 'SD (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non'),
+(27, 'SLTP (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non'),
+(28, 'SLTA/SMA (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non'),
+(29, 'D1/D2/D3 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non'),
+(30, 'S1/D4 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non'),
+(31, 'S2/Akta 5 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non'),
+(32, 'S3 (Jika Masih Belajar di Sekolah/Perguruan Tinggi Non Katolik)', 'masih_belajar_non');
 
 -- --------------------------------------------------------
 
@@ -690,6 +817,12 @@ ALTER TABLE `jenis_kelamin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jenis_rumah_tangga`
+--
+ALTER TABLE `jenis_rumah_tangga`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `keterlibatan`
 --
 ALTER TABLE `keterlibatan`
@@ -726,6 +859,12 @@ ALTER TABLE `komuni_pertama`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kondisi_ekonomi`
+--
+ALTER TABLE `kondisi_ekonomi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `list_anggota_keluarga`
 --
 ALTER TABLE `list_anggota_keluarga`
@@ -744,6 +883,12 @@ ALTER TABLE `list_kepala_keluarga`
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `pendidikan`
+--
+ALTER TABLE `pendidikan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `status_gerejawi`
@@ -799,6 +944,11 @@ ALTER TABLE `jabatan_sosial`
 ALTER TABLE `jenis_kelamin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `jenis_rumah_tangga`
+--
+ALTER TABLE `jenis_rumah_tangga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `keterlibatan`
 --
 ALTER TABLE `keterlibatan`
@@ -829,20 +979,30 @@ ALTER TABLE `kode_suku_bangsa`
 ALTER TABLE `komuni_pertama`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `kondisi_ekonomi`
+--
+ALTER TABLE `kondisi_ekonomi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `list_anggota_keluarga`
 --
 ALTER TABLE `list_anggota_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=429;
 --
 -- AUTO_INCREMENT for table `list_kepala_keluarga`
 --
 ALTER TABLE `list_kepala_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+--
+-- AUTO_INCREMENT for table `pendidikan`
+--
+ALTER TABLE `pendidikan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `status_gerejawi`
 --
