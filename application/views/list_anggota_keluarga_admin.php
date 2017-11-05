@@ -99,7 +99,7 @@
 								<td><?php echo $value->liber_baptizatorum; ?></td>
 								<td><?php echo $value->catatan; ?></td>
 								<td>
-									<a href="edit_anggota_keluarga?id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>&id=<?php echo $value->id; ?>" class="btn btn-warning">
+									<a href="edit_anggota_keluarga_admin?id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>&id=<?php echo $value->id; ?>" class="btn btn-warning">
 										<span class="glyphicon glyphicon-edit"></span> 
 										Edit
 									</a>
@@ -215,7 +215,7 @@
 							</div>
 							<div class="form-group">
 								<select class="form-control" required name="agama">
-									<option>--Agama--</option>
+									<option value="">--Agama--</option>
 									<?php 
 									$query = $this->db->query("select * from agama");
 
@@ -229,8 +229,8 @@
 								<input class="form-control" type="" name="tempat_dan_tgl_lahir" placeholder="Tempat Dan Tgl Lahir" value="<?php echo $_POST["tempat_dan_tgl_lahir"]; ?>"  required>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="jenis_kelamin" >
-									<option>--Jenis Kelamin--</option>
+								<select class="form-control" name="jenis_kelamin" required >
+									<option value="">--Jenis Kelamin--</option>
 									<?php 
 										$query = $this->db->query("select * from jenis_kelamin");
 
@@ -241,8 +241,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="hub_dngn_kepala_rt">
-									<option>--Hubungan Dengan Kepala Rt--</option>
+								<select class="form-control" name="hub_dngn_kepala_rt" required>
+									<option value="">--Hubungan Dengan Kepala Rt--</option>
 									<?php 
 									$query = $this->db->query("select * from hub_dngn_kepala_rt");
 
@@ -253,13 +253,13 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="suku_bangsa">
-									<option>--Kode Suku Bangsa--</option>
+								<select class="form-control" name="suku_bangsa" required>
+									<option value="">--Kode Suku Bangsa--</option>
 									<?php 
 									$query = $this->db->query("select * from kode_suku_bangsa");
 
 									foreach ($query->result() as $key => $value) {$key += 1;
-										echo "<option value='{$value->etnis}. $value'>$key. $value->etnis</option>";
+										echo "<option value='$value->etnis'>$key. $value->etnis</option>";
 									}
 
 
@@ -267,14 +267,14 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="pendidikan">
-									<option>--Pendidikan--</option>
+								<select class="form-control" name="pendidikan" required>
+									<option value="">--Pendidikan--</option>
 									<optgroup label="Jika Tamat">
 										<?php 
 										$query = $this->db->query("select * from pendidikan where kategory='tamat'");
 
 										foreach ($query->result() as $key => $value) {$key += 1;
-											echo "<option value='{$value->pendidikan}. $value'>$key. $value->pendidikan</option>";
+											echo "<option value='$value->pendidikan'>$key. $value->pendidikan</option>";
 										}
 										?>
 									</optgroup>
@@ -283,7 +283,7 @@
 										$query = $this->db->query("select * from pendidikan where kategory='masih_belajar'");
 
 										foreach ($query->result() as $key => $value) {$key += 1;
-											echo "<option value='{$key}. $value'>$key. $value->pendidikan</option>";
+											echo "<option value='$value->pendidikan'>$key. $value->pendidikan</option>";
 										}
 										?>
 									</optgroup>
@@ -292,15 +292,15 @@
 										$query = $this->db->query("select * from pendidikan where kategory='masih_belajar_non'");
 
 										foreach ($query->result() as $key => $value) {$key += 1;
-											echo "<option value='{$key}. $value'>$key. $value->pendidikan</option>";
+											echo "<option value='$value->pendidikan'>$key. $value->pendidikan</option>";
 										}
 										?>
 									</optgroup>
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="bidang_studi">
-									<option>--Kode Bidang Studi--</option>
+								<select class="form-control" name="bidang_studi" required>
+									<option value="">--Kode Bidang Studi--</option>
 									
 									<?php 
 										$query = $this->db->query("select * from kode_bidang_studi");
@@ -313,8 +313,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="pekerjaan">
-									<option>--Kode Pekerjaan--</option>
+								<select class="form-control" name="pekerjaan" required>
+									<option value="">--Kode Pekerjaan--</option>
 									
 									<?php 
 									$query = $this->db->query("select * from kode_pekerjaan");
@@ -327,8 +327,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="golongan_darah">
-									<option>--Golongan Darah--</option>
+								<select class="form-control" name="golongan_darah"  required>
+									<option value="">--Golongan Darah--</option>
 								<?php 
 								$query = $this->db->query("select * from golongan_darah");
 
@@ -340,8 +340,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="status_kesehatan">
-									<option>--Status Kesehatan--</option>
+								<select class="form-control" name="status_kesehatan" required>
+									<option value="">--Status Kesehatan--</option>
 									<?php 
 
 									$query = $this->db->query("select * from status_kesehatan");
@@ -356,8 +356,8 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<select class="form-control" name="waktu_baptis">
-									<option>--Waktu Baptis--</option>
+								<select class="form-control" name="waktu_baptis"  required>
+									<option value="">--Waktu Baptis--</option>
 									<?php 
 
 									$query = $this->db->query("select * from waktu_baptis");
@@ -369,14 +369,14 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="" name="tempat_dan_tgl_baptis" placeholder="Tempat Dan Tanggal Baptis" value="<?php echo $_POST["tempat_dan_tgl_baptis"]; ?>">
+								<input class="form-control" type="" name="tempat_dan_tgl_baptis" placeholder="Tempat Dan Tanggal Baptis" value="<?php echo $_POST["tempat_dan_tgl_baptis"]; ?>" required>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="" name="tempat_dan_tahun_penguatan" placeholder="Tempat Dan Tahun Penguatan" value="<?php echo $_POST["tempat_dan_tahun_penguatan"]; ?>">
+								<input class="form-control" type="" name="tempat_dan_tahun_penguatan" placeholder="Tempat Dan Tahun Penguatan" value="<?php echo $_POST["tempat_dan_tahun_penguatan"]; ?>" required>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="status_perkawinan">
-									<option>--Status Perkawinan--</option>
+								<select class="form-control" name="status_perkawinan" required>
+									<option value="">--Status Perkawinan--</option>
 
 									<?php 
 
@@ -389,8 +389,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="jabatan_sosial">
-									<option>--Jabatan Sosial--</option>
+								<select class="form-control" name="jabatan_sosial" required>
+									<option value="">--Jabatan Sosial--</option>
 									<?php 
 										$query = $this->db->query("select * from jabatan_sosial");
 
@@ -401,8 +401,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="tempat_tinggal">
-									<option>--Tempat Tinggal--</option>
+								<select class="form-control" name="tempat_tinggal" required>
+									<option value="">--Tempat Tinggal--</option>
 									<optgroup label="Di Luar Paroki di Dalam Keuskupan Setempat">
 										<option value="">gk tau yg mana tabel yg di maksud</option>
 									</optgroup>
@@ -422,8 +422,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="komuni_pertama">
-									<option>--Komuni Pertama--</option>
+								<select class="form-control" name="komuni_pertama" required>
+									<option value="">--Komuni Pertama--</option>
 									
 									<?php 
 
@@ -437,8 +437,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="status_gerejawi">
-									<option>--Status Gerejawi--</option>
+								<select class="form-control" name="status_gerejawi"  required>
+									<option value="">--Status Gerejawi--</option>
 									
 									<?php 
 
@@ -451,8 +451,8 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<select class="form-control" name="keterlibatan">
-									<option>--Keterlibatan--</option>
+								<select class="form-control" name="keterlibatan" required>
+									<option value="">--Keterlibatan--</option>
 									<?php 
 
 									$query = $this->db->query("select * from keterlibatan");
@@ -464,7 +464,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="" name="catatan">
+								<input class="form-control" type="" name="catatan" placeholder="catatan" required>
 							</div>
 							<div class="form-group">
 								<input class="form-control" type="number" name="liber_baptizatorum" placeholder="Liber Baptizatorum (Tulis Nomor Buku Baptis)" value="<?php echo $_POST["liber_baptizatorum"]; ?>" required>

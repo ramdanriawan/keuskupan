@@ -48,14 +48,24 @@
     	$this->load->view("list_anggota_keluarga_admin");
     }
 
-    function edit_anggota_keluarga()
+    function edit_anggota_keluarga_user()
     {
-    	$this->load->view("edit_anggota_keluarga");
+    	$this->load->view("edit_anggota_keluarga_user");
     }
 
     function cari()
     {
         $this->load->view("cari");
+    }
+
+    function edit_kepala_keluarga_admin()
+    {
+        $this->load->view("edit_kepala_keluarga_admin");
+    }
+
+    function edit_anggota_keluarga_admin()
+    {
+        $this->load->view("edit_anggota_keluarga_admin");
     }
 
  }

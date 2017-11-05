@@ -57,7 +57,7 @@ if(!isset($_COOKIE["username"]))
 	<!-- /theme JS files -->
 </head>
 
-<body>
+<body class="sidebar-xs">
 
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse">

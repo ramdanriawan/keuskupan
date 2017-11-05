@@ -77,14 +77,14 @@
 							<option value="">--Kode Suku Bangsa--</option>
 							<?php 
 							$query = $this->db->query("select * from kode_suku_bangsa");
+							foreach ($query->result() as $key => $value) {$key += 1;
 							if($value->etnis == $data->suku_bangsa)
 								{
 									$selected = "selected";
 								}else{
 									$selected = "";
 								}
-							foreach ($query->result() as $key => $value) {$key += 1;
-								echo "<option value='{$value->etnis}. $value' $selected>$key. $value->etnis</option>";
+								echo "<option value='$value->etnis' $selected>$key. $value->etnis</option>";
 							}
 
 
@@ -105,7 +105,7 @@
 								}else{
 									$selected = "";
 								}
-									echo "<option value='{$value->pendidikan}. $value' $selected>$key. $value->pendidikan</option>";
+									echo "<option value='$value->pendidikan' $selected>$key. $value->pendidikan</option>";
 								}
 								?>
 							</optgroup>
@@ -167,7 +167,7 @@
 							$query = $this->db->query("select * from kode_pekerjaan");
 
 							foreach ($query->result() as $key => $value) {$key += 1;
-								if($value->pekerjaan == $data->pekerjaan)
+								if($value->jenis_pekerjaan == $data->pekerjaan)
 								{
 									$selected = "selected";
 								}else{
@@ -295,7 +295,7 @@
 							$query = $this->db->query("select * from kode_keuskupan");
 
 							foreach ($query->result() as $key => $value) {$key += 1;
-								if($value->tempat_tinggal == $data->tempat_tinggal)
+								if($value->nama_keuskupan == $data->tempat_tinggal)
 								{
 									$selected = "selected";
 								}else{
@@ -371,16 +371,16 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<input class="form-control" type="" name="catatan" value="<?php echo $data->catatan; ?>">
+						<input class="form-control" type="" name="catatan" value="<?php echo $data->catatan; ?>" placeholder="catatan">
 					</div>
 					<div class="form-group">
 						<input class="form-control" type="number" name="liber_baptizatorum" placeholder="Liber Baptizatorum (Tulis Nomor Buku Baptis)" value="<?php echo $data->liber_baptizatorum; ?>" required>
 					</div>
 					
 					<input type="hidden" name="table" value="list_anggota_keluarga">
-					<input type="hidden" name="media" value="edit_admin">
-					<input type="hidden" name="id_anggota_keluarga_edit" value="<?php echo $_GET["id_anggota_keluarga"] ?>">
-					<input type="hidden" name="id_edit" value="<?php echo $_GET["id"] ?>">
+					<input type="hidden" name="media" value="edit_anggota_keluarga_admin">
+					<input type="hidden" name="id_anggota_keluarga" value="<?php echo $_GET["id_anggota_keluarga"] ?>">
+					<input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
 
 					<div class="form-group">
 						<div class="row">

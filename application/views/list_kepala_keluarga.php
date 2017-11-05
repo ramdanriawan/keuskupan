@@ -63,12 +63,12 @@
 								<td><?php echo $value->jenis_rumah_tangga; ?></td>
 								<td>
 									<div class="btn-group btn-group-sm">
-										<button id="delete" class="btn btn-warning btn-sm" type="button">
+										<a href="list_kepala_keluarga?media=delete&id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>" class="delete btn btn-warning btn-sm" type="button">
 											<span class="glyphicon glyphicon-trash"></span>
-										</button>
-										<button id="edit" class="btn btn-info btn-sm" type="button">
+										</a>
+										<a  href="edit_kepala_keluarga_admin?media=edit&id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>" class="edit btn btn-info btn-sm" type="button">
 											<span class="glyphicon glyphicon-edit"></span>
-										</button>
+										</a>
 									</div>
 								</td>
 
@@ -150,7 +150,38 @@
       }
 
     })
+
+    $(".delete").click(function(){
+    	return confirm("apakah kamu akan menghapus kepala keluarga beserta anggota untuk id ini?");
+    })
   })
 </script>
 
 <?php include "footer.php"; ?>
+<?php 
+if($_GET["media"] == "delete")
+{
+	$query = $this->db->query("delete from list_kepala_keluarga where id_anggota_keluarga=$_GET[id_anggota_keluarga]");
+	$query2 = $this->db->query("delete from list_anggota_keluarga where id_anggota_keluarga=$_GET[id_anggota_keluarga]");
+
+	if($query && $query2)
+	{
+		//ini alertnya gak jalan
+		echo "<script> alert('berhasil menghapus kepala keluarga beserta anggotanya id $_GET[id_anggota_keluarga]');</script>";
+
+		header("location: list_kepala_keluarga");
+	}
+	else
+	{
+		echo "<script> alert('Gagal menghapus kepala keluarga beserta anggotanya id $_GET[id_anggota_keluarga]');</script>";
+
+	}
+}
+
+
+if($_COOKIE["pesan_insert"])
+{
+	echo "<script>alert('$_COOKIE[pesan_insert]');<script>";
+}
+
+ ?>

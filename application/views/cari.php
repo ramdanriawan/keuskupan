@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; error_reporting(0) ?>
 
 <div class="container">
 	<div class="row">
@@ -47,7 +47,11 @@
 									$mulai = 0;
 								}
 
-								$query = $this->db->query("select * from list_kepala_keluarga where nama like '%$_GET[cari]%' limit $mulai,20");
+								if($_GET["cari"])
+								{
+									$query = $this->db->query("select * from list_kepala_keluarga where nama like '%$_GET[cari]%' limit $mulai,20");
+									
+								}
 								foreach ($query->result() as $key => $value): echo "<tr>";?>
 
 								<td><a href="./list_anggota_keluarga_admin?id_anggota_keluarga=<?php echo $value->id_anggota_keluarga; ?>"><?php echo $value->id_anggota_keluarga; ?></a></td>
